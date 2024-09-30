@@ -17,13 +17,13 @@
             </div>
             <div class="biodata text-center text-blue-100">
                 <div class="biodata-data font-bold w-72 m-4 p-2 bg-blue-950/30 rounded-lg">
-                    <?= $nama ?>
+                    {{ $nama }}  
                 </div>
                 <div class="biodata-data font-bold w-72 m-4 p-2 bg-blue-950/30 rounded-lg">
-                    <?= $kelas ?>
+                    {{ $nama_kelas ?? 'Kelas tidak ditemukan'}} 
                 </div>
                 <div class="biodata-data font-bold w-72 m-4 p-2 bg-blue-950/30 rounded-lg">
-                    <?= $npm ?>
+                    {{ $npm }}
                 </div>
             </div>
         </div>
