@@ -1,34 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create User</title>
 
-    @vite('resources/css/app.css')
-</head>
-{{-- 2351031013 --}}
-<body class="m-0 p-0">
-    {{-- <form action="{{ route('user.store') }}" method="POST">
-        @csrf
-        <div>
-            <label for="nama">Nama:</label>
-            <input type="text" name="nama">
-        </div>
+@extends('layouts.app')
 
-        <div>
-            <label for="kelas">Kelas:</label>
-            <input type="text" name="kelas">
-        </div>
-
-        <div>
-            <label for="npm">NPM:</label>
-            <input type="text" name="npm">
-        </div>
-
-        <button type="submit">Submit</button>
-    </form> --}}
+@section('content')
 
     <div class="container flex justify-center items-center h-screen bg-gradient-to-r from-blue-950 to-blue-900">
 
@@ -66,5 +39,5 @@
         </div>
 
     </div>
-</body>
-</html>
+
+@endsection
