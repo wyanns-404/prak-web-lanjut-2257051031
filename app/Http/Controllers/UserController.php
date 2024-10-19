@@ -62,7 +62,7 @@ class UserController extends Controller
 
         if ($request->hasFile('foto')){
             $foto = $request->file('foto');
-            $fileName = time() . '_' . $foto->getClientOriginalName();
+            $fileName = time() . '_' . $request->foto->extension();
             $fotoPath = $foto->move(('uploads/img'), $fileName);
         } else {
             $fotoPath = null;
@@ -89,10 +89,43 @@ class UserController extends Controller
         $user = $this->userModel->getUser($id);
 
         $data = [
-            'title' => 'Profile',
+            'title' => 'Detail',
             'user' => $user,
         ];
 
         return view('profile', $data);
+    }
+
+    public function edit($id){
+        $user = $this->userModel->findOrFail($id);
+        $kelas = $this->kelasModel->getKelas();
+        $title = 'Edit User';
+
+        return view('edit_user', compact('user', 'kelas', 'title'));
+    }
+
+    public function update(Request $request, $id){
+        $user = $this->userModel->findOrFail($id);
+
+        $user->nama = $request->nama;
+        $user->npm = $request->npm;
+        $user->kelas_id = $request->kelas_id;
+
+        if ($request->hasFile('foto')){
+            $fileName = time() . '_' . $request->foto->extension();
+            $request->foto->move(('uploads/img'), $fileName);
+            $user->foto = 'uploads/img/'. $fileName;
+        }
+
+        $user->save();
+
+        return redirect()->route('user.list')->with('Succes', 'User Updated Successfully');
+    }
+
+    public function destroy($id){
+        $user = $this->userModel->findOrFail($id);
+        $user->delete();
+
+        return redirect()->to('/user')->with('succes', 'User has been deleted successfully');
     }
 }
