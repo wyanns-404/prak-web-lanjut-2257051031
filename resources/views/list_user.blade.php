@@ -40,11 +40,11 @@
                             foreach ($users as $user) {
                             ?>
                             <tr class="bg-white transition-all duration-500 hover:bg-gray-50">
-                                <td class="text-center p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 "><?= $user['id'] ?></td>
+                                <td class="text-center p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{{ $user->id }}</td>
                                 <td class="text-center p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"><?= $user['nama'] ?></td>
                                 <td class="text-center p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"><?= $user['npm'] ?></td>
                                 <td class="text-center p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"><?= $user['nama_kelas'] ?></td>
-                                <td class="p-5"><div class="h-full w-full flex items-center justify-center"><img src="<?= $user['foto'] ?>" alt="Foto Profil" width="100" class="rounded-xl"></div></td>
+                                <td class="p-5"><div class="h-full w-full flex items-center justify-center"><img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="Foto Profil" width="100" class="rounded-xl"></div></td>
                                 <td class="text-center p-5 ">
                                     <div class="flex items-center justify-center gap-1">
                                         <a href="{{ route('user.edit', $user->id) }}" class="p-2  rounded-full  group transition-all duration-500  flex item-center">
