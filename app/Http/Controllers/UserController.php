@@ -61,20 +61,17 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('foto')){
-            $foto = $request->file('foto');
-            $fileName = time() . '_' . $request->foto->extension();
-            $fotoPath = $foto->move(('uploads/img'), $fileName);
-        } else {
-            $fotoPath = null;
+            $file = $request->file('foto');
+            $fileName = time() . '.' . $request->foto->extension();
+            $file->storeAs('uploads', $fileName, 'public');
+
+            $this->userModel->create([
+                'nama' => $request->input('nama'),
+                'npm' => $request->input('npm'),
+                'kelas_id' => $request->input('kelas_id'),
+                'foto' => $fileName,
+            ]);
         }
-
-        $this->userModel->create([
-            'nama' => $request->input('nama'),
-            'npm' => $request->input('npm'),
-            'kelas_id' => $request->input('kelas_id'),
-            'foto' => $fotoPath,
-        ]);
-
 
         return redirect()->to('/user')->with('success', 'User Berhasil ditambahkan');
 
@@ -112,7 +109,7 @@ class UserController extends Controller
         $user->kelas_id = $request->kelas_id;
 
         if ($request->hasFile('foto')){
-            $fileName = time() . '_' . $request->foto->extension();
+            $fileName = time() . '.' . $request->foto->extension();
             $request->foto->move(('uploads/img'), $fileName);
             $user->foto = 'uploads/img/'. $fileName;
         }
